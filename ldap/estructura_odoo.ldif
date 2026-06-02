@@ -1,0 +1,11 @@
+dn: ou=Odoo,dc=odoo,dc=odoo
+objectClass: organizationalUnit
+ou: Odoo
+
+dn: ou=Calidad,dc=odoo,dc=odoo
+objectClass: organizationalUnit
+ou: Calidad
+
+dn: ou=Marketing,dc=odoo,dc=odoo
+objectClass: organizationalUnit
+ou: Marketing

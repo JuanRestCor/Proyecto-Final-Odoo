@@ -1,0 +1,25 @@
+dn: uid=juan,ou=Odoo,dc=odoo,dc=odoo
+objectClass: inetOrgPerson
+objectClass: posixAccount
+objectClass: shadowAccount
+uid: juan
+cn: Juan Perez
+sn: Perez
+uidNumber: 10001
+gidNumber: 9000
+homeDirectory: /home/juan
+loginShell: /bin/bash
+userPassword: juan123
+
+dn: uid=zora,ou=Odoo,dc=odoo,dc=odoo
+objectClass: inetOrgPerson
+objectClass: posixAccount
+objectClass: shadowAccount
+uid: zora
+cn: Zora Gomez
+sn: Gomez
+uidNumber: 10002
+gidNumber: 9001
+homeDirectory: /home/zora
+loginShell: /bin/bash
+userPassword: zora123

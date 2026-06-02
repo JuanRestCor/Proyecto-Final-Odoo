@@ -1,0 +1,9 @@
+dn: cn=odoo_users,ou=Odoo,dc=odoo,dc=odoo
+objectClass: posixGroup
+cn: odoo_users
+gidNumber: 9000
+
+dn: cn=odoo_admins,ou=Odoo,dc=odoo,dc=odoo
+objectClass: posixGroup
+cn: odoo_admins
+gidNumber: 9001
