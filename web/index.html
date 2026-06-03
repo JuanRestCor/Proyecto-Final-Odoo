@@ -1,0 +1,21 @@
+er { background: #c73652; }
+        .footer { text-align: center; color: #555; font-size: 12px; margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="logo">
+            <h1>ODOO</h1>
+            <p>Sistema de autenticacion LDAP</p>
+        </div>
+        <form method="POST" action="login.php">
+            <label>Usuario</label>
+            <input type="text" name="user" placeholder="ej: juan" required>
+            <label>Contrasena</label>
+            <input type="password" name="pass" placeholder="********" required>
+            <button type="submit">INGRESAR</button>
+        </form>
+        <div class="footer">dc=odoo,dc=odoo</div>
+    </div>
+</body>
+</html>
