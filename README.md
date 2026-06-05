@@ -439,7 +439,8 @@ Espera 30 segundos y recarga http://localhost:8069
 http://localhost:8069/web?debug=1
 ```
 
-3. Ve al menú Ajustes, luego Técnico, luego Seguridad, luego Autenticación LDAP
+3. Ve al menú Ajustes, luego bajar hasta la seccion de Integraciones, selecionar la opcion de Autentificacion LDAPS
+y luego en Servidor LDAP
 4. Haz clic en el botón Crear y rellena los campos exactamente así:
 
 | Campo                   | Valor                    |
