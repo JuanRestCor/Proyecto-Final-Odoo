@@ -603,3 +603,129 @@ Los contenedores se comunican por nombre de servicio, no por IP.
 - Red Docker: odoo_network
 - Repositorio: https://github.com/JuanRestCor/Proyecto-Final-Odoo
 - Autores: Zorally Echavarría López y Juan Steban Restrepo Correa
+
+---
+
+## Parte 12 — Restaurar la copia de seguridad de Odoo
+
+El proyecto incluye una copia de seguridad de la base de datos de Odoo en la carpeta `docs/`. 
+Esta copia ya tiene cargados todos los productos del menú, las categorías, las configuraciones del punto de venta y los usuarios. 
+Restaurarla te da acceco a un modulo de venta ya "funcional"
+
+### Paso 12.1 — Ubicar el archivo de backup
+
+El archivo de copia de seguridad se encuentra en la carpeta docs con este nombre:
+
+```
+docs/Odoo-Final-Cano_2026-06-05_22-29-55.zip
+```
+##Para mejores resultados, descarga el zip de la copia de seguridad en tu ordenador
+
+
+### Paso 12.2 — Abrir el gestor de bases de datos
+
+Asegúrate de que los contenedores estén corriendo. Si no lo están, ejecuta primero este comando (presiona Enter después):
+
+```
+cd /home/Odoo-Docker
+```
+
+Luego este (presiona Enter después):
+
+```
+docker compose up -d
+```
+
+Ahora abre el navegador en esta dirección:
+
+```
+http://localhost:8069/web/database/manager
+```
+
+### Paso 12.3 — Eliminar la base de datos vacía (si existe)
+
+Si al entrar al gestor ya aparece una base de datos llamada "odoo" pero está vacía o no tiene los productos, elimínala primero:
+
+1. Busca la base de datos "odoo" en la lista.
+2. Haz clic en el botón Delete (eliminar) que aparece a su lado.
+3. Te pedirá el Master Password. Escribe admin123 y confirma.
+
+### Paso 12.4 — Restaurar la copia de seguridad
+
+1. En el gestor de bases de datos, busca y haz clic en la opción Restore Database (restaurar base de datos).
+2. Se abrirá un formulario. Rellénalo así:
+
+| Campo | Valor |
+|-------|-------|
+| Master Password | admin123 |
+| File | selecciona el archivo docs/Odoo-Final-Cano_2026-06-05_22-29-55.zip |
+| Database Name | odoo |
+| This database might have been moved or copied | selecciona "This database is a copy" |
+
+
+
+3. Haz clic en el botón Continue o Restore.
+4. Espera 1 a 2 minutos mientras se restaura.
+
+### Paso 12.5 — Verificar la restauración
+
+Cuando termine, abre el navegador en:
+
+```
+http://localhost:8069
+```
+
+Inicia sesión como administrador (usuario admin, contraseña admin) y verifica que aparezcan los productos del menú en el Punto de Venta. Si los ves, la restauración fue exitosa.
+
+---
+
+## Parte 13 — Iniciar sesión con el usuario del POS y hacer una venta
+
+El sistema tiene un usuario cajero configurado con acceso al Punto de Venta. A continuación se explica cómo iniciar sesión con él y realizar una venta completa.
+
+### Paso 13.1 — Iniciar sesión como cajero
+
+1. Si tienes una sesión abierta como admin, ciérrala (haz clic en tu nombre arriba a la derecha y elige Cerrar sesión).
+2. Abre el navegador en:
+
+```
+http://localhost:8069
+```
+
+3. Ingresa las credenciales del usuario cajero:
+   - Email: jrcorrea@iegabo.edu.co
+   - Contraseña: zora123
+4. Haz clic en Iniciar sesión.
+
+Como este usuario solo tiene permisos de Punto de Venta, al entrar verá únicamente ese módulo disponible.
+
+### Paso 13.2 — Abrir la sesión de caja
+
+1. Haz clic en el módulo Punto de Venta.
+2. Verás el punto de venta configurado. Haz clic en Nueva sesión o en el botón para abrir.
+3. Si pide un monto inicial de caja, puedes dejarlo en 0 o poner el efectivo con el que inicia la caja.
+4. Haz clic en Abrir sesión de caja.
+5. Se abrirá la interfaz de ventas.
+
+### Paso 13.3 — Tomar un pedido
+
+1. Si el sistema usa mesas, selecciona una mesa del plano.
+2. Haz clic sobre los productos que el cliente pide. Cada clic los agrega al pedido. Por ejemplo: un Perro Avenida y una Gaseosa.
+3. Verás el pedido y el total acumulado en el panel lateral.
+4. Si necesitas quitar un producto, selecciónalo en el panel y usa la tecla de borrar (Backspace) o el botón de eliminar.
+
+### Paso 13.4 — Cobrar y finalizar
+
+1. Cuando el pedido esté completo, haz clic en el botón Pago.
+2. Selecciona el método de pago, por ejemplo Efectivo.
+3. Ingresa el monto que entrega el cliente. El sistema calcula el cambio automáticamente.
+4. Haz clic en Validar.
+5. Puedes imprimir el recibo o enviarlo, y luego hacer clic en Nueva orden para atender al siguiente cliente.
+
+### Paso 13.5 — Cerrar la caja al terminar el turno
+
+1. Haz clic en el menú (las tres líneas o el ícono de la esquina superior).
+2. Selecciona Cambio de usuario y seleciona al administrador.
+3. Repite el paso 1 y seleciona cerrar caja.
+4. El sistema mostrara el resumen de las ventas y el total de la caja
+5. cuadrar la caja y colocar el valor del efectivo, para despues cerrar caja y sistema, no sin antes descaragr el informe de ventas
